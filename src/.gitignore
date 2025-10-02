@@ -8,7 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
+# Keep the production build checked in so non-developers can open dist/index.html directly.
 dist-ssr
 *.local
 

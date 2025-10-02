@@ -1,73 +1,38 @@
-# React + TypeScript + Vite
+# PromptForge dropdown builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This workspace contains a self-contained front-end that lets you author prompt dropdown collections, lock or randomize option selections, and preview the assembled prompt in real time.
 
-Currently, two official plugins are available:
+## Quick start: open it instantly
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You do **not** need to install dependencies or run a dev server to try PromptForge. The production build is checked into version control under [`dist/`](dist/).
 
-## React Compiler
+1. Download or clone this repository.
+2. Open `src/dist/index.html` in your browser (double-clicking the file works on Windows and macOS).
+3. Start creating dropdowns immediately—the UI persists your edits to `localStorage`, so refreshing the page keeps your work.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> Tip: bookmark the local file URL once it is open so you can return to the tool with a single click.
 
-## Expanding the ESLint configuration
+## Developer workflow
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+If you want to work on the source or run the automated tests, install dependencies and use the provided npm scripts:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cd src
+npm install
+npm run dev        # Start Vite in development mode
+npm run build      # Type-check and produce the production build in dist/
+npm run lint       # Run ESLint
+npm run test -- --run  # Execute the Vitest suite once
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Running `npm run build` regenerates the contents of `dist/`. Commit the updated build whenever you make UI changes so non-developers can keep using the click-to-open experience.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Folder structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- `src/src/` – React components, hooks, styles, and tests.
+- `src/dist/` – Production-ready assets that can be opened directly in a browser.
+- `src/public/` – Static assets copied into the build (e.g., icons).
+
+## Feedback loop
+
+Issues and feature ideas are always welcome. If you spot something that could make the quick-start flow even easier, feel free to open a ticket or drop a note in your review.
